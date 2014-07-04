@@ -25,7 +25,6 @@ import com.codenvy.api.core.rest.shared.dto.Link;
 import com.codenvy.api.core.util.CustomPortService;
 import com.codenvy.api.core.util.DownloadPlugin;
 import com.codenvy.api.core.util.HttpDownloadPlugin;
-import com.codenvy.api.core.util.Pair;
 import com.codenvy.api.project.server.ProjectEventService;
 import com.codenvy.api.runner.RunnerException;
 import com.codenvy.api.runner.dto.RunRequest;
@@ -36,6 +35,7 @@ import com.codenvy.api.runner.internal.ResourceAllocators;
 import com.codenvy.api.runner.internal.Runner;
 import com.codenvy.api.runner.internal.RunnerConfiguration;
 import com.codenvy.api.runner.internal.RunnerConfigurationFactory;
+import com.codenvy.commons.lang.Pair;
 import com.codenvy.commons.lang.ZipUtils;
 import com.codenvy.dto.server.DtoFactory;
 
