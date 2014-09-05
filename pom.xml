@@ -39,6 +39,7 @@
         </developer>
     </developers>
     <modules>
+        <module>client</module>
         <module>builder</module>
         <module>runner</module>
     </modules>

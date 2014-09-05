@@ -34,6 +34,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -130,8 +131,19 @@ public class GruntProcess extends ApplicationProcess implements ProjectEventList
         }
 
 
+        String taskName = null;
+        Map<String, String> options = gruntRunnerConfiguration.getRequest().getOptions();
+        if (options != null) {
+            taskName = options.get("taskname");
+        }
+        // no task defined, use default one
+        if (taskName == null) {
+            taskName = "server";
+        }
+
+
         // Create the process builder
-        ProcessBuilder processBuilder = new ProcessBuilder().command("grunt", "server").directory(workDir).redirectErrorStream(true);
+        ProcessBuilder processBuilder = new ProcessBuilder().command("grunt", taskName).directory(workDir).redirectErrorStream(true);
 
         try {
             this.process = processBuilder.start();
