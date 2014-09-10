@@ -172,7 +172,7 @@ public class SelectGruntTaskPagePresenter extends AbstractWizardPage implements 
         Map<String, String> options = new HashMap<>();
         options.put("taskname", taskSelected);
         RunOptions runOptions = dtoFactory.createDto(RunOptions.class).withSkipBuild(true).withOptions(options);
-        runnerController.runActiveProject(runOptions, null, true);
+        runnerController.runCurrentProject(runOptions, null, true);
     }
 
 }
