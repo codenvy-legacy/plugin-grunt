@@ -53,7 +53,7 @@ public class CustomGruntRunAction extends Action {
     /** {@inheritDoc} */
     @Override
     public void actionPerformed(ActionEvent e) {
-        analyticsEventLogger.log(GruntExtension.class, "Custom run");
+        analyticsEventLogger.log(this);
         selectGruntTaskPagePresenter.showDialog();
     }
 
