@@ -23,6 +23,26 @@
     <name>Grunt Plugin :: Client</name>
     <dependencies>
         <dependency>
+            <groupId>com.codenvy.platform-api</groupId>
+            <artifactId>codenvy-api-project</artifactId>
+            <version>${codenvy.platform-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codenvy.platform-api</groupId>
+            <artifactId>codenvy-api-runner</artifactId>
+            <version>${codenvy.platform-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codenvy.platform-api-gwt-client</groupId>
+            <artifactId>codenvy-api-analytics-gwt-client</artifactId>
+            <version>${codenvy.platform-api-gwt-client.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codenvy.platform-api-gwt-client</groupId>
+            <artifactId>codenvy-gwt-client-commons</artifactId>
+            <version>${codenvy.platform-api-gwt-client.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.codenvy.ide</groupId>
             <artifactId>codenvy-ext-runner</artifactId>
             <version>${codenvy.ide.version}</version>
@@ -41,21 +61,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.codenvy.platform-api</groupId>
-            <artifactId>codenvy-api-project</artifactId>
-            <version>${codenvy.platform-api.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.codenvy.platform-api</groupId>
-            <artifactId>codenvy-api-runner</artifactId>
-            <version>${codenvy.platform-api.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.codenvy.platform-api-gwt-client</groupId>
-            <artifactId>codenvy-gwt-client-commons</artifactId>
-            <version>${codenvy.platform-api-gwt-client.version}</version>
+            <groupId>com.codenvy.ide</groupId>
+            <artifactId>codenvy-ide-ui</artifactId>
+            <version>${codenvy.ide.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -82,7 +90,6 @@
             <version>${org.mockito.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
