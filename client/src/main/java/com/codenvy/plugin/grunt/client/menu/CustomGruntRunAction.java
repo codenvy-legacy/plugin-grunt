@@ -16,7 +16,7 @@ import com.codenvy.ide.api.action.ActionEvent;
 import com.codenvy.ide.api.app.AppContext;
 import com.codenvy.ide.api.app.CurrentProject;
 import com.codenvy.ide.extension.runner.client.run.RunController;
-import com.codenvy.plugin.grunt.client.GruntExtension;
+import com.codenvy.plugin.grunt.client.GruntResources;
 import com.codenvy.plugin.grunt.client.presenter.SelectGruntTaskPagePresenter;
 import com.google.inject.Inject;
 
@@ -42,8 +42,9 @@ public class CustomGruntRunAction extends Action {
     public CustomGruntRunAction(LocalizationConstant localizationConstant,
                                 AppContext appContext, RunController runController,
                                 AnalyticsEventLogger analyticsEventLogger,
+                                GruntResources gruntResources,
                                 SelectGruntTaskPagePresenter selectGruntTaskPagePresenter) {
-        super(localizationConstant.gruntCustomRunText(), localizationConstant.gruntCustomRunDescription());
+        super(localizationConstant.gruntCustomRunText(), localizationConstant.gruntCustomRunDescription(), null, gruntResources.customRunIcon());
         this.appContext = appContext;
         this.analyticsEventLogger = analyticsEventLogger;
         this.runController = runController;
