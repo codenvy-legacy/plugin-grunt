@@ -11,6 +11,7 @@
 package com.codenvy.plugin.grunt.client.menu;
 
 import com.codenvy.api.analytics.logger.AnalyticsEventLogger;
+import com.codenvy.api.project.shared.dto.RunnersDescriptor;
 import com.codenvy.ide.api.action.Action;
 import com.codenvy.ide.api.action.ActionEvent;
 import com.codenvy.ide.api.app.AppContext;
@@ -44,7 +45,8 @@ public class CustomGruntRunAction extends Action {
                                 AnalyticsEventLogger analyticsEventLogger,
                                 GruntResources gruntResources,
                                 SelectGruntTaskPagePresenter selectGruntTaskPagePresenter) {
-        super(localizationConstant.gruntCustomRunText(), localizationConstant.gruntCustomRunDescription(), null, gruntResources.customRunIcon());
+        super(localizationConstant.gruntCustomRunText(), localizationConstant.gruntCustomRunDescription(), null,
+              gruntResources.customRunIcon());
         this.appContext = appContext;
         this.analyticsEventLogger = analyticsEventLogger;
         this.runController = runController;
@@ -63,8 +65,12 @@ public class CustomGruntRunAction extends Action {
     public void update(ActionEvent e) {
         CurrentProject currentProject = appContext.getCurrentProject();
         if (currentProject != null) {
-            final String runner = currentProject.getProjectDescription().getRunner();
-            if (runner != null && runner.contains("grunt")) {
+            final RunnersDescriptor runners = currentProject.getProjectDescription().getRunners();
+            String defaultRunner = null;
+            if (runners != null) {
+                defaultRunner = runners.getDefault();
+            }
+            if (defaultRunner != null && defaultRunner.contains("grunt")) {
                 e.getPresentation().setVisible(true);
             } else {
                 e.getPresentation().setVisible(false);
@@ -74,6 +80,4 @@ public class CustomGruntRunAction extends Action {
             e.getPresentation().setEnabledAndVisible(false);
         }
     }
-
-
 }
