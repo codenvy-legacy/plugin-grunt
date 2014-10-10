@@ -29,7 +29,7 @@ import static com.codenvy.ide.api.constraints.Anchor.AFTER;
  * @author Florent Benoit
  */
 @Singleton
-@Extension(title = "Grunt extension")
+@Extension(title = "Grunt")
 public class GruntExtension {
 
     @Inject
