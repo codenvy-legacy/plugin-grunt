@@ -26,6 +26,7 @@ import com.codenvy.api.core.util.CustomPortService;
 import com.codenvy.api.core.util.DownloadPlugin;
 import com.codenvy.api.core.util.HttpDownloadPlugin;
 import com.codenvy.api.project.server.ProjectEventService;
+import com.codenvy.api.project.shared.dto.RunnerEnvironment;
 import com.codenvy.api.runner.RunnerException;
 import com.codenvy.api.runner.dto.RunRequest;
 import com.codenvy.api.runner.internal.ApplicationProcess;
@@ -53,6 +54,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -91,12 +93,19 @@ public class GruntRunner extends Runner {
 
     @Override
     public String getName() {
-        return "grunt";
+        return "javascript/web";
     }
 
     @Override
     public String getDescription() {
         return "Grunt JS, the JavaScript Task Runner";
+    }
+
+    @Override
+    public List<RunnerEnvironment> getEnvironments() {
+        final DtoFactory dtoFactory = DtoFactory.getInstance();
+        return Collections.singletonList(dtoFactory.createDto(RunnerEnvironment.class)
+                                                   .withId("grunt").withDescription(getDescription()));
     }
 
     @Override
