@@ -63,7 +63,7 @@ public class SelectGruntTaskPagePresenter extends AbstractWizardPage implements 
                                         NotificationManager notificationManager,
                                         AppContext appContext
                                        ) {
-        super("Select Grunt Task", null);
+//        super("Select Grunt Task", null);
         this.view = view;
         this.runnerManagerPresenter = runnerManagerPresenter;
         this.dtoFactory = dtoFactory;
@@ -73,26 +73,13 @@ public class SelectGruntTaskPagePresenter extends AbstractWizardPage implements 
         view.setDelegate(this);
     }
 
-    @Nullable
-    @Override
-    public String getNotice() {
-        return null;
-    }
+
 
     @Override
     public boolean isCompleted() {
         return true;
     }
 
-    @Override
-    public void focusComponent() {
-
-    }
-
-    @Override
-    public void removeOptions() {
-
-    }
 
     @Override
     public void setUpdateDelegate(@NotNull Wizard.UpdateDelegate delegate) {
