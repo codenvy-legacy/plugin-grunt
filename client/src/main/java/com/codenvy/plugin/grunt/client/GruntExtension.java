@@ -14,18 +14,19 @@ import com.codenvy.ide.api.action.ActionManager;
 import com.codenvy.ide.api.action.DefaultActionGroup;
 import com.codenvy.ide.api.constraints.Constraints;
 import com.codenvy.ide.api.extension.Extension;
-import com.codenvy.ide.extension.runner.client.RunnerLocalizationConstant;
 import com.codenvy.plugin.grunt.client.menu.CustomGruntRunAction;
 import com.codenvy.plugin.grunt.client.menu.LocalizationConstant;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import static com.codenvy.ide.api.action.IdeActions.GROUP_RUN;
+import static com.codenvy.ide.api.action.IdeActions.GROUP_BUILD_TOOLBAR;
+import static com.codenvy.ide.api.action.IdeActions.GROUP_MAIN_TOOLBAR;
 import static com.codenvy.ide.api.constraints.Anchor.AFTER;
 
 
 /**
  * Extension registering Grunt commands
+ *
  * @author Florent Benoit
  */
 @Singleton
@@ -35,19 +36,18 @@ public class GruntExtension {
     @Inject
     public GruntExtension(ActionManager actionManager,
                           LocalizationConstant localizationConstant,
-                          RunnerLocalizationConstant runnerLocalizationConstants,
                           CustomGruntRunAction customGruntRunAction) {
 
         actionManager.registerAction(localizationConstant.gruntCustomRunId(), customGruntRunAction);
 
         // Get Run menu
-        DefaultActionGroup runMenuActionGroup = (DefaultActionGroup)actionManager.getAction(GROUP_RUN);
+        DefaultActionGroup mainToolbarGroup = (DefaultActionGroup)actionManager.getAction(GROUP_MAIN_TOOLBAR);
 
         // create constraint
-        Constraints afterBuildConstraints = new Constraints(AFTER, runnerLocalizationConstants.customRunAppActionId());
+        Constraints afterBuildConstraints = new Constraints(AFTER, GROUP_BUILD_TOOLBAR);
 
         // Add Custom Grunt Run in build menu
-        runMenuActionGroup.add(customGruntRunAction, afterBuildConstraints);
+        mainToolbarGroup.add(customGruntRunAction, afterBuildConstraints);
 
     }
 }

@@ -16,7 +16,6 @@ import com.codenvy.ide.api.action.Action;
 import com.codenvy.ide.api.action.ActionEvent;
 import com.codenvy.ide.api.app.AppContext;
 import com.codenvy.ide.api.app.CurrentProject;
-import com.codenvy.ide.extension.runner.client.run.RunController;
 import com.codenvy.plugin.grunt.client.GruntResources;
 import com.codenvy.plugin.grunt.client.presenter.SelectGruntTaskPagePresenter;
 import com.google.inject.Inject;
@@ -37,11 +36,9 @@ public class CustomGruntRunAction extends Action {
 
     private SelectGruntTaskPagePresenter selectGruntTaskPagePresenter;
 
-    private RunController runController;
-
     @Inject
     public CustomGruntRunAction(LocalizationConstant localizationConstant,
-                                AppContext appContext, RunController runController,
+                                AppContext appContext,
                                 AnalyticsEventLogger analyticsEventLogger,
                                 GruntResources gruntResources,
                                 SelectGruntTaskPagePresenter selectGruntTaskPagePresenter) {
@@ -49,7 +46,6 @@ public class CustomGruntRunAction extends Action {
               gruntResources.customRunIcon());
         this.appContext = appContext;
         this.analyticsEventLogger = analyticsEventLogger;
-        this.runController = runController;
         this.selectGruntTaskPagePresenter = selectGruntTaskPagePresenter;
     }
 
@@ -75,7 +71,7 @@ public class CustomGruntRunAction extends Action {
             } else {
                 e.getPresentation().setVisible(false);
             }
-            e.getPresentation().setEnabled(currentProject.getIsRunningEnabled() && !runController.isAnyAppRunning());
+            e.getPresentation().setEnabled(true);
         } else {
             e.getPresentation().setEnabledAndVisible(false);
         }

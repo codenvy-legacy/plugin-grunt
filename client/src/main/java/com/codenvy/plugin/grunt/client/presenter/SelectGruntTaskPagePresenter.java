@@ -20,7 +20,7 @@ import com.codenvy.ide.api.notification.NotificationManager;
 import com.codenvy.ide.api.wizard.AbstractWizardPage;
 import com.codenvy.ide.api.wizard.Wizard;
 import com.codenvy.ide.dto.DtoFactory;
-import com.codenvy.ide.extension.runner.client.run.RunController;
+import com.codenvy.ide.ext.runner.client.manager.RunnerManagerPresenter;
 import com.codenvy.ide.rest.AsyncRequestCallback;
 import com.codenvy.ide.rest.StringUnmarshaller;
 import com.codenvy.ide.util.loging.Log;
@@ -45,7 +45,7 @@ import java.util.Map;
 public class SelectGruntTaskPagePresenter extends AbstractWizardPage implements SelectGruntTaskPageView.ActionDelegate {
 
     private SelectGruntTaskPageView view;
-    private RunController           runController;
+    private RunnerManagerPresenter  runnerManagerPresenter;
     private DtoFactory              dtoFactory;
     private String                  taskSelected;
     private ProjectServiceClient    projectServiceClient;
@@ -57,7 +57,7 @@ public class SelectGruntTaskPagePresenter extends AbstractWizardPage implements 
      */
     @Inject
     public SelectGruntTaskPagePresenter(SelectGruntTaskPageView view,
-                                        RunController runController,
+                                        RunnerManagerPresenter runnerManagerPresenter,
                                         ProjectServiceClient projectServiceClient,
                                         DtoFactory dtoFactory,
                                         NotificationManager notificationManager,
@@ -65,7 +65,7 @@ public class SelectGruntTaskPagePresenter extends AbstractWizardPage implements 
                                        ) {
 //        super("Select Grunt Task", null);
         this.view = view;
-        this.runController = runController;
+        this.runnerManagerPresenter = runnerManagerPresenter;
         this.dtoFactory = dtoFactory;
         this.projectServiceClient = projectServiceClient;
         this.appContext = appContext;
@@ -159,7 +159,7 @@ public class SelectGruntTaskPagePresenter extends AbstractWizardPage implements 
         Map<String, String> options = new HashMap<>();
         options.put("taskname", taskSelected);
         RunOptions runOptions = dtoFactory.createDto(RunOptions.class).withSkipBuild(true).withOptions(options);
-        runController.runActiveProject(runOptions, null, true);
+        runnerManagerPresenter.launchRunner(runOptions);
     }
 
 }
